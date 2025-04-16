@@ -1,0 +1,22 @@
+{
+  "name": "aqa_playwright_my_hw",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spelanky/aqa_playwright_my_hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spelanky/aqa_playwright_my_hw/issues"
+  },
+  "homepage": "https://github.com/Spelanky/aqa_playwright_my_hw#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.1"
+  }
+}
