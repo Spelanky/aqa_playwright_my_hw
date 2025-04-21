@@ -2,7 +2,17 @@
   "name": "aqa_playwright_my_hw",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "npx playwright test --project=chromium --headed --debug",
+    "test:headed": "npx playwright test --headed",
+    "test:report": "npx playwright show-report",
+    "test:clean": "rimraf playwright-report test-results",
+    "test:full": "npm run test:clean && npm run test",
+    "test:stg": "BASE_URL=https://staging.example.com npx playwright test",
+    "test:prod": "BASE_URL=https://example.com npx playwright test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Spelanky/aqa_playwright_my_hw.git"
@@ -17,6 +27,7 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.51.1",
-    "@types/node": "^22.14.1"
+    "@types/node": "^22.14.1",
+    "rimraf": "^6.0.1"
   }
 }
