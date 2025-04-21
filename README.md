@@ -1,4 +1,4 @@
-# 🧪 aqa_playwright_my_hw
+# aqa_playwright_my_hw
 
 ## ✅ Task 1: REGISTER — demo-login-form
 
