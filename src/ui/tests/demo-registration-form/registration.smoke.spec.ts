@@ -35,7 +35,7 @@ test.describe("[UI] [demo-registration-form] [Smoke] Registration form", () => {
     resultPassword: "#password",
   };
 
-  const user = {
+  const testData = {
     firstName: "Dmitriy",
     lastName: "Bohdanov",
     address: "Street st. house number",
@@ -57,21 +57,21 @@ test.describe("[UI] [demo-registration-form] [Smoke] Registration form", () => {
   });
 
   test("Fill registration form with valid values", async ({ page }) => {
-    await page.fill(selectors.firstName, user.firstName);
-    await page.fill(selectors.lastName, user.lastName);
-    await page.fill(selectors.address, user.address);
-    await page.fill(selectors.email, user.email);
-    await page.fill(selectors.phone, user.phone);
-    await page.selectOption(selectors.country, user.country);
+    await page.fill(selectors.firstName, testData.firstName);
+    await page.fill(selectors.lastName, testData.lastName);
+    await page.fill(selectors.address, testData.address);
+    await page.fill(selectors.email, testData.email);
+    await page.fill(selectors.phone, testData.phone);
+    await page.selectOption(selectors.country, testData.country);
     await page.check(selectors.genderMale);
     await page.check(selectors.hobby);
-    await page.fill(selectors.language, user.language);
-    await page.selectOption(selectors.skills, user.skills);
-    await page.selectOption(selectors.year, user.year);
-    await page.selectOption(selectors.month, user.month);
-    await page.selectOption(selectors.day, user.day);
-    await page.fill(selectors.password, user.password);
-    await page.fill(selectors.confirmPassword, user.password);
+    await page.fill(selectors.language, testData.language);
+    await page.selectOption(selectors.skills, testData.skills);
+    await page.selectOption(selectors.year, testData.year);
+    await page.selectOption(selectors.month, testData.month);
+    await page.selectOption(selectors.day, testData.day);
+    await page.fill(selectors.password, testData.password);
+    await page.fill(selectors.confirmPassword, testData.password);
 
     //Submit btn
     await page.locator('button[type="submit"]').click();
@@ -83,35 +83,41 @@ test.describe("[UI] [demo-registration-form] [Smoke] Registration form", () => {
     );
     // Check displayed values
     await expect(page.locator(selectors.resultFullName)).toHaveText(
-      `${user.firstName} ${user.lastName}`
+      `${testData.firstName} ${testData.lastName}`
     );
     await expect(page.locator(selectors.resultAddress)).toHaveText(
-      user.address
+      testData.address
     );
-    await expect(page.locator(selectors.resultEmail)).toHaveText(user.email);
-    await expect(page.locator(selectors.resultPhone)).toHaveText(user.phone);
+    await expect(page.locator(selectors.resultEmail)).toHaveText(
+      testData.email
+    );
+    await expect(page.locator(selectors.resultPhone)).toHaveText(
+      testData.phone
+    );
     await expect(page.locator(selectors.resultCountry)).toHaveText(
-      user.country
+      testData.country
     );
-    await expect(page.locator(selectors.resultGender)).toHaveText(user.gender);
+    await expect(page.locator(selectors.resultGender)).toHaveText(
+      testData.gender
+    );
     await expect(page.locator(selectors.resultLanguage)).toHaveText(
-      user.language
+      testData.language
     );
     await expect(page.locator(selectors.resultSkills)).toHaveText(
-      user.skills.join(", ")
+      testData.skills.join(", ")
     );
     await expect(page.locator(selectors.resultHobbies)).toHaveText("Movies");
     await expect(page.locator(selectors.resultDateOfBirth)).toHaveText(
-      `${user.day} ${user.month} ${user.year}`
+      `${testData.day} ${testData.month} ${testData.year}`
     );
 
     //Password masking
     const passwordMask = await page.locator("#password").innerText();
-    expect(passwordMask.length).toBe(user.password.length);
+    expect(passwordMask.length).toBe(testData.password.length);
     expect(passwordMask).toMatch(/^\*+$/);
 
     // Check password is not in HTML
     const html = await page.content();
-    expect(html).not.toContain(user.password);
+    expect(html).not.toContain(testData.password);
   });
 });
